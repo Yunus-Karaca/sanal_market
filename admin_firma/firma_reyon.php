@@ -2,17 +2,20 @@
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
-<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
-<!-- BEGIN HEAD -->
+<!--[if !IE]><!--> <html lang="tr"> <!--<![endif]-->
+
+<!-- BEGIN HEAD-->
 <head>
+   
     <meta charset="UTF-8" />
-    <title>SANAL | MARKET </title>
+    <title>SANAL | MARKET</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta content="" name="description" />
-    <meta content="" name="author" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
      <!--[if IE]>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <![endif]-->
+    <!-- GLOBAL STYLES -->
     <!-- GLOBAL STYLES -->
     <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
@@ -22,61 +25,35 @@
     <!--END GLOBAL STYLES -->
 
     <!-- PAGE LEVEL STYLES -->
-    <link href="assets/css/layout2.css" rel="stylesheet" />
-    <link href="assets/plugins/flot/examples/examples.css" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/plugins/timeline/timeline.css" />
-    <link href="assets/plugins/jquery-steps-master/demo/css/jquery.steps.css" rel="stylesheet" /> 
-    <link rel="stylesheet" href="assets/css/bootstrap-fileupload.min.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="assets/css/jquery.multi-draggable.css">
+    <link rel="stylesheet" href="assets/css/mdrag-ex.css">
     <!-- END PAGE LEVEL  STYLES -->
-     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+    <!-- PAGE LEVEL STYLES -->
+    <!-- END PAGE LEVEL  STYLES -->
+       <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
-
-<script src="assets/js/jquery.min.js"></script>
-
-<style>
-    .box{
-        width:800px;
-        margin:0 auto;
-    }
-    .active_tab1{
-        background-color:#fff;
-        color:#333;
-        font-weight: 600;
-    }
-    .inactive_tab1{
-        background-color: #f5f5f5;
-        color: #333;
-        cursor: not-allowed;
-    }
-    .has-error{
-        border-color:#cc0000;
-        background-color:#ffff99;
-    }
-</style>
-
-
 </head>
-
-    <!-- END HEAD -->
-
-    <!-- BEGIN BODY -->
+    <!-- END  HEAD-->
+    <!-- BEGIN BODY-->
 <body class="padTop53 " >
     <?php session_start(); ?>
     <?php 
-        if($_SESSION){     
-            $id=$_SESSION["id"];          
+        if($_SESSION){               
             $uye=$_SESSION["uye"]; 
-            $eposta=$_SESSION["eposta"];        
+            $eposta=$_SESSION["eposta"];
+            $b= $_SESSION["firma"];         
         }
     ?>  
-    <!-- MAIN WRAPPER -->
-    <div id="wrap" >
-        
+     <!-- MAIN WRAPPER -->
+    <div id="wrap">
 
-        <!-- HEADER SECTION -->
+
+         <!-- HEADER SECTION -->
         <div id="top">
 
             <nav class="navbar navbar-inverse navbar-fixed-top " style="padding-top: 10px;">
@@ -87,9 +64,7 @@
                 <header class="navbar-header">
 
                     <a href="index.php" class="navbar-brand">
-                    <img src="assets/img/logo.png" alt="" />
-                        
-                        </a>
+                    <img src="assets/img/logo.png" alt="" /></a>
                 </header>
                 <!-- END LOGO SECTION -->
                 <ul class="nav navbar-top-links navbar-right">
@@ -139,8 +114,8 @@
                         </ul>
                     </li>
                     <!--END MESSAGES SECTION -->
+                   
 
-                    
                     <!--ADMIN SETTINGS SECTIONS -->
 
                     <li class="dropdown">
@@ -150,7 +125,7 @@
 
                         <ul class="dropdown-menu dropdown-user">
                             <li><a href="#"><i class="icon-user"></i> User Profile </a>
-                            </li>
+                            </li>                          
                             <li class="divider"></li>
                             <li><a href="cikis.php"><i class="icon-signout"></i> Logout </a>
                             </li>
@@ -166,34 +141,34 @@
         <!-- END HEADER SECTION -->
 
 
-        
+
         <!-- MENU SECTION -->
-       <div id="left" >
-            <div class="media user-media well-small">
-                <a class="user-link" href="#">
-                    <img class="media-object img-thumbnail user-img" alt="User Picture" src="assets/img/user.gif" />
-                </a>
-                <br />
-                <div class="media-body">
-                    <h5 class="media-heading" style="font-weight: inherit; text-transform: capitalize; font-size: 16px;">
-                        <?php 
-                        if($_SESSION){               
-                            echo $uye; 
-                        }
-                        ?>  
-                    </h5>
-                    <ul class="list-unstyled user-info">                      
-                        <li>
-                             <a class="btn btn-success btn-xs btn-circle" style="width: 10px;height: 12px;"></a> Online
-                           
-                        </li>
-                    </ul>
+       <div id="left">
+                <div class="media user-media well-small">
+                    <a class="user-link" href="#">
+                        <img class="media-object img-thumbnail user-img" alt="User Picture" src="assets/img/user.gif" />
+                    </a>
+                    <br />
+                    <div class="media-body">
+                        <h5 class="media-heading" style="font-weight: inherit; text-transform: capitalize; font-size: 16px;">
+                            <?php 
+                            if($_SESSION){               
+                                echo $uye;                                    
+                            }
+                            ?>  
+                        </h5>
+                        <ul class="list-unstyled user-info">                      
+                            <li>
+                                 <a class="btn btn-success btn-xs btn-circle" style="width: 10px;height: 12px;"></a> Online
+                               
+                            </li>
+                        </ul>
+                    </div>
+                    <br />
                 </div>
-                <br />
-            </div>
 
-            <ul id="menu" class="collapse">
-
+         <ul id="menu" class="collapse">
+                
                 <li class="panel">
                     <a href="index.php" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#blank-nav">
                         ANASAYFA            
@@ -210,7 +185,7 @@
 
                 <!-- KATEGORİ CRUD İŞLEMLERİ KISMI -->
                 <li class="panel">
-                    <a href="" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#blank-nav2">
+                    <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#blank-nav2">
                         KATEGORİ İŞLEMLERİ                                     
                     </a>                   
                 </li>
@@ -219,7 +194,7 @@
 
                 <!-- SİPARİŞ İŞLEMLERİ KISMI -->
                 <li class="panel">
-                    <a href="" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#blank-nav3">
+                    <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#blank-nav3">
                         SİPARİŞ İŞLEMLERİ                                     
                     </a>
                     <ul class="collapse" id="blank-nav3">                        
@@ -288,147 +263,56 @@
         <!--END MENU SECTION -->
 
 
-
         <!--PAGE CONTENT -->
-        <div id="content">  
-            <div class="inner" style="min-height: 700px;">
+        <div id="content">
+            <div class="inner" style="min-height:1200px;">
+
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <h3> ŞUBE BİLGİLERİNE HOŞGELDİNİZ </h3>
+                        <h3>REYON OLUŞTURMA İŞLEMLERİNE HOŞGELDİNİZ</h3>
                     </div>
                 </div>
-                <hr />
+                <hr /> 
 
-            <!--BLOCK SECTION -->
-            <div class="row">
-                <div class="col-lg-10">
-                    <!-- şube modal -->
-                    <a href="" class="btn btn-success btn-sm" data-toggle="modal" data-target="#uiModal">Şube Ekle</a><hr />
-                    <div class="modal fade" id="uiModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header text-center">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                        <h4 class="modal-title">Şube Ekleme</h4>
-                                </div>
-                                <form action="" method="post"> 
-                                <div class="modal-body">                                                                             
-                                        <label for="text1" class="control-label col-lg-4">Şube İsim</label>
-                                        <div class="col-lg-8">
-                                            <input type="text" id="text1" name="sube_isim" class="form-control" required/><br>
-                                        </div>
-                                            
-                                        <label for="limiter" class="control-label col-lg-4" >Şube Hakkında</label><br>
-                                        <div class="col-lg-8">
-                                            <textarea id="limiter" name="sube_hakkinda" class="form-control" rows="8" required></textarea><br>
-                                        </div>
-
-                                        <label for="limiter1" class="control-label col-lg-4">Şube İletişim</label><br>
-                                        <div class="col-lg-8">
-                                            <textarea id="limiter1" name="sube_iletisim" class="form-control" rows="8" required></textarea><br>
-                                        </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
-                                    <button type="submit" name="btn_sube" class="btn btn-primary pull-right" style="margin-right: 15px;">Kaydet</button>
-                                </div>
-                                </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>   
-                    <!-- şube modal bitti --> 
-
-                    <!-- şube ekleme kod -->  
+                <div class="part"> 
+                    <div id="c1" class="container">
                     <?php 
-                        if(isset($_POST['btn_sube'])){
-                            $sube_isim=$_POST["sube_isim"];
-                            $sube_hakkinda=$_POST["sube_hakkinda"];
-                            $sube_iletisim=$_POST["sube_iletisim"];
-                            $sube_yetkili=$id;
-
-                            $ekle=$db->prepare("insert into sube set sube_isim=?,sube_hakkinda=?,sube_iletisim=?,sube_yetkili=?");
-                            $ekle->execute(array($sube_isim,$sube_hakkinda,$sube_iletisim,$sube_yetkili));
-                        }
-                    ?>   
-                    <!-- şube ekleme kod bitti -->
+                       $veri= $db->query("SELECT * FROM kategori where kategori_ust='0'", PDO::FETCH_ASSOC);            
+                            foreach($veri as $row){  
+                                $row['kategori_id'];                               
+                    ?>
+                        <div class="drag"><?php echo $row['kategori_isim'] ?></div>
+                    <?php
+                    }
+                    ?>                     
+                    </div>                 
                 </div>
-
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                <thead>
-                                    <tr>         
-                                        <th>ŞUBE İSİM</th>                                 
-                                        <th>ŞUBE HAKKINDA</th>
-                                        <th>ŞUBE İLETİŞİM</th>                                                                         
-                                    </tr>
-                                </thead>
-                                    
-                                <tbody>
-                                <?php                               
-                                    $veri= $db->query("SELECT * FROM sube where sube_yetkili ='$id'", PDO::FETCH_ASSOC);            
-                                        foreach($veri as $row){  
-                                            $row['sube_id'];                                     
-                                ?>
-                                <tr>
-                                    <td><?php echo $row['sube_isim'] ?></td>
-                                    <td><?php echo $row['sube_hakkinda'] ?></td>
-                                    <td><?php echo $row['sube_iletisim'] ?></td>
-                                </tr> 
-                                <?php
-                                }
-                                ?>                                      
-                                </tbody>                           
-                            </table>
-                        </div>                      
-                    </div>
-                </div>
+               
             </div>
-            <!--END BLOCK SECTION --> 
-
         </div>
-     <!--END PAGE CONTENT -->
+        <!--END PAGE CONTENT -->
 
-         <!-- RIGHT STRIP  SECTION -->
-        <div id="right">
-            <div class="well well-small">
-                <ul class="list-unstyled">
-                    <li>Visitor &nbsp; : <span>23,000</span></li>
-                    <li>Users &nbsp; : <span>53,000</span></li>
-                    <li>Registrations &nbsp; : <span>3,000</span></li>
-                </ul>
-            </div>
 
-        </div>
-         <!-- END RIGHT STRIP  SECTION -->
     </div>
+     <!--END MAIN WRAPPER -->
 
-    <!--END MAIN WRAPPER -->
-
-    <!-- FOOTER -->
+   <!-- FOOTER -->
     <div id="footer">
         <p>&copy;  binarytheme &nbsp;2014 &nbsp;</p>
     </div>
     <!--END FOOTER -->
 
-
     <!-- GLOBAL SCRIPTS -->
     <script src="assets/plugins/jquery-2.0.3.min.js"></script>
-     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/plugins/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     <!-- END GLOBAL SCRIPTS -->
-
     <!-- PAGE LEVEL SCRIPTS -->
-    <script src="assets/plugins/jquery-steps-master/lib/jquery.cookie-1.3.1.js"></script>
-    <script src="assets/plugins/jquery-steps-master/build/jquery.steps.js"></script>   
-    <script src="assets/js/WizardInit.js"></script> 
-    <script src="assets/plugins/jasny/js/bootstrap-fileupload.js"></script>
-    <!-- END PAGE LEVEL SCRIPTS -->
-
-
+    <script src="assets/js/jquery-1.12.4.js"></script>
+    <script src="assets/js/jquery-ui.js"></script>
+    <script src="assets/js/jquery.multi-draggable.js"></script>
+    <script src="assets/js/mdrag-ex.js"></script>
 </body>
-
-    <!-- END BODY -->
+    <!-- END BODY-->
+    
 </html>
