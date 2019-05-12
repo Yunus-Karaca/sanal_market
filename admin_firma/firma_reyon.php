@@ -28,6 +28,18 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="assets/css/jquery.multi-draggable.css">
     <link rel="stylesheet" href="assets/css/mdrag-ex.css">
+    <style type="text/css">
+        #box1 {
+            width:400px;
+            height:300px;
+            border-style: solid;
+            border-width: 2px;
+        }
+        canvas {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
     <!-- END PAGE LEVEL  STYLES -->
 
     <!-- PAGE LEVEL STYLES -->
@@ -168,7 +180,7 @@
                 </div>
 
          <ul id="menu" class="collapse">
-                
+
                 <li class="panel">
                     <a href="index.php" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#blank-nav">
                         ANASAYFA            
@@ -210,7 +222,8 @@
                         FİRMA BİLGİLERİ                                   
                     </a>
                     <ul class="collapse" id="blank-nav4">                        
-                        <li><a href="firma_bilgi.php"><i class="icon-angle-right"></i>FİRMA BİLGİSİ EKLE  </a></li>
+                        <li><a href="firma_bilgi.php"><i class="icon-angle-right"></i>FİRMA BİLGİLERİ</a></li>
+                        <li><a href="firma_sube.php"><i class="icon-angle-right"></i>ŞUBE BİLGİLERİ</a></li>
                     </ul>
                 </li>
                 <!-- FİRMA BİTTİ -->
@@ -265,7 +278,7 @@
 
         <!--PAGE CONTENT -->
         <div id="content">
-            <div class="inner" style="min-height:1200px;">
+            <div class="inner" style="min-height:700px;">
 
                 <div class="row">
                     <div class="col-lg-12 text-center">
@@ -274,25 +287,55 @@
                 </div>
                 <hr /> 
 
-                <div class="part"> 
+                <div id="text">
+                <div class="part">
                     <div id="c1" class="container">
-                    <?php 
-                       $veri= $db->query("SELECT * FROM kategori where kategori_ust='0'", PDO::FETCH_ASSOC);            
-                            foreach($veri as $row){  
-                                $row['kategori_id'];                               
-                    ?>
+                        <div class="drag">Giris</div>
+                        <div class="drag">Çıkış</div>
+                        <div class="drag">Kasalar</div>
+                         <?php 
+                              $veri= $db->query("SELECT * FROM kategori where kategori_ust='0'", PDO::FETCH_ASSOC);            
+                                  foreach($veri as $row){  
+                                    $row['kategori_id'];                               
+                        ?>
                         <div class="drag"><?php echo $row['kategori_isim'] ?></div>
-                    <?php
-                    }
-                    ?>                     
-                    </div>                 
+                        <?php
+                        }
+                        ?>                     
+                    </div>                  
+                </div>  
                 </div>
-               
+
+                <a href="javascript:genScreenshot()"> Ekran Görüntüsü Al</a>
+                <a id="test"></a>
+                <div id="canvas" style="display:none;"></div>
+                <script type="text/javascript">
+                    function genScreenshot() {
+                        html2canvas(document.body, {
+                          onrendered: function(canvas) {
+                          $('#box1').html("");
+                                $('#box1').append(canvas);
+                          
+                          if (navigator.userAgent.indexOf("MSIE ") > 0 || 
+                                        navigator.userAgent.match(/Trident.*rv\:11\./)) 
+                                {
+                            var blob = canvas.msToBlob();
+                            window.navigator.msSaveBlob(blob,'Test file.png');
+                          }
+                          else {
+                            $('#test').attr('href', canvas.toDataURL("image/png"));
+                            $('#test').attr('download','Test file.png');
+                            $('#test')[0].click();
+                          }                      
+                          }
+                        });
+                    }
+                </script>
+               <a href="firma_sube_olustur.php" style="float: right;">İşleme Devam Et</a>
+
             </div>
         </div>
         <!--END PAGE CONTENT -->
-
-
     </div>
      <!--END MAIN WRAPPER -->
 
@@ -312,6 +355,7 @@
     <script src="assets/js/jquery-ui.js"></script>
     <script src="assets/js/jquery.multi-draggable.js"></script>
     <script src="assets/js/mdrag-ex.js"></script>
+    <script src="assets/js/html2canvas.js"></script>
 </body>
     <!-- END BODY-->
     

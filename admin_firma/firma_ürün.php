@@ -166,7 +166,7 @@
                 </div>
 
          <ul id="menu" class="collapse">
-                
+
                 <li class="panel">
                     <a href="index.php" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#blank-nav">
                         ANASAYFA            
@@ -208,7 +208,8 @@
                         FİRMA BİLGİLERİ                                   
                     </a>
                     <ul class="collapse" id="blank-nav4">                        
-                        <li><a href="firma_bilgi.php"><i class="icon-angle-right"></i>FİRMA BİLGİSİ EKLE  </a></li>
+                        <li><a href="firma_bilgi.php"><i class="icon-angle-right"></i>FİRMA BİLGİLERİ</a></li>
+                        <li><a href="firma_sube.php"><i class="icon-angle-right"></i>ŞUBE BİLGİLERİ</a></li>
                     </ul>
                 </li>
                 <!-- FİRMA BİTTİ -->
@@ -266,14 +267,14 @@
             <div class="inner" style="min-height:1200px;">
 
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-12 text-center">
                         <h3>ÜRÜN İŞLEMLERİNE HOŞGELDİNİZ</h3>
                     </div>
                 </div>
                 <hr /> 
 
                 <!--ÜRÜN EKLEME MODAL -->            
-                <a href="" class="btn btn-success btn-sm" data-toggle="modal" data-target="#uiModal">ÜRÜN ADD</a><hr /> 
+                <a href="" class="btn btn-success btn-sm" data-toggle="modal" data-target="#uiModal">Ürün Ekle</a><hr /> 
                 <div class="modal fade" id="uiModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -486,7 +487,7 @@
                                                 Update</button>                              
                                             </td>
                                             <td class="center">
-                                                <?php echo "<a href='function.php?id=".$a."'onclick='return confirmDel();'>";?>
+                                                <?php echo "<a href='urun_sil.php?id=".$a."'onclick='return confirmDel();'>";?>
                                                 <p type="submit" name="urun_delete" class="btn btn-danger">Delete</p></a>
                                             </td>                                                                                    
                                         </tr> 

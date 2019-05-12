@@ -165,7 +165,7 @@
                 </div>
 
          <ul id="menu" class="collapse">
-                
+
                 <li class="panel">
                     <a href="index.php" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#blank-nav">
                         ANASAYFA            
@@ -207,7 +207,8 @@
                         FİRMA BİLGİLERİ                                   
                     </a>
                     <ul class="collapse" id="blank-nav4">                        
-                        <li><a href="firma_bilgi.php"><i class="icon-angle-right"></i>FİRMA BİLGİSİ EKLE  </a></li>
+                        <li><a href="firma_bilgi.php"><i class="icon-angle-right"></i>FİRMA BİLGİLERİ</a></li>
+                        <li><a href="firma_sube.php"><i class="icon-angle-right"></i>ŞUBE BİLGİLERİ</a></li>
                     </ul>
                 </li>
                 <!-- FİRMA BİTTİ -->
@@ -255,7 +256,6 @@
                 <li><a href="cikis.php"><i class="icon-signin"></i> Login Page </a></li>
 
              </ul>
-
         </div>
         <!--END MENU SECTION -->
 

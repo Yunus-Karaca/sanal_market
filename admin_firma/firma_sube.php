@@ -34,29 +34,7 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 
-<script src="assets/js/jquery.min.js"></script>
-
-<style>
-    .box{
-        width:800px;
-        margin:0 auto;
-    }
-    .active_tab1{
-        background-color:#fff;
-        color:#333;
-        font-weight: 600;
-    }
-    .inactive_tab1{
-        background-color: #f5f5f5;
-        color: #333;
-        cursor: not-allowed;
-    }
-    .has-error{
-        border-color:#cc0000;
-        background-color:#ffff99;
-    }
-</style>
-
+    <script src="assets/js/jquery.min.js"></script>
 
 </head>
 
@@ -210,7 +188,7 @@
 
                 <!-- KATEGORİ CRUD İŞLEMLERİ KISMI -->
                 <li class="panel">
-                    <a href="" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#blank-nav2">
+                    <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#blank-nav2">
                         KATEGORİ İŞLEMLERİ                                     
                     </a>                   
                 </li>
@@ -219,7 +197,7 @@
 
                 <!-- SİPARİŞ İŞLEMLERİ KISMI -->
                 <li class="panel">
-                    <a href="" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#blank-nav3">
+                    <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#blank-nav3">
                         SİPARİŞ İŞLEMLERİ                                     
                     </a>
                     <ul class="collapse" id="blank-nav3">                        
@@ -235,7 +213,8 @@
                         FİRMA BİLGİLERİ                                   
                     </a>
                     <ul class="collapse" id="blank-nav4">                        
-                        <li><a href="firma_bilgi.php"><i class="icon-angle-right"></i>FİRMA BİLGİSİ EKLE  </a></li>
+                        <li><a href="firma_bilgi.php"><i class="icon-angle-right"></i>FİRMA BİLGİLERİ</a></li>
+                        <li><a href="firma_sube.php"><i class="icon-angle-right"></i>ŞUBE BİLGİLERİ</a></li>
                     </ul>
                 </li>
                 <!-- FİRMA BİTTİ -->
@@ -299,62 +278,23 @@
                 </div>
                 <hr />
 
+
+            <script language="javascript">
+                function confirmDel() {
+                    var agree=confirm("Bu içeriği silmek istediğinizden emin misiniz?\nBu işlem geri alınamaz!");
+                    if (agree) {
+                        return true ; 
+                    }
+                    else {
+                        return false ;
+                    }
+                }
+            </script>
+
             <!--BLOCK SECTION -->
             <div class="row">
-                <div class="col-lg-10">
-                    <!-- şube modal -->
-                    <a href="" class="btn btn-success btn-sm" data-toggle="modal" data-target="#uiModal">Şube Ekle</a><hr />
-                    <div class="modal fade" id="uiModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header text-center">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                        <h4 class="modal-title">Şube Ekleme</h4>
-                                </div>
-                                <form action="" method="post"> 
-                                <div class="modal-body">                                                                             
-                                        <label for="text1" class="control-label col-lg-4">Şube İsim</label>
-                                        <div class="col-lg-8">
-                                            <input type="text" id="text1" name="sube_isim" class="form-control" required/><br>
-                                        </div>
-                                            
-                                        <label for="limiter" class="control-label col-lg-4" >Şube Hakkında</label><br>
-                                        <div class="col-lg-8">
-                                            <textarea id="limiter" name="sube_hakkinda" class="form-control" rows="8" required></textarea><br>
-                                        </div>
-
-                                        <label for="limiter1" class="control-label col-lg-4">Şube İletişim</label><br>
-                                        <div class="col-lg-8">
-                                            <textarea id="limiter1" name="sube_iletisim" class="form-control" rows="8" required></textarea><br>
-                                        </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
-                                    <button type="submit" name="btn_sube" class="btn btn-primary pull-right" style="margin-right: 15px;">Kaydet</button>
-                                </div>
-                                </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>   
-                    <!-- şube modal bitti --> 
-
-                    <!-- şube ekleme kod -->  
-                    <?php 
-                        if(isset($_POST['btn_sube'])){
-                            $sube_isim=$_POST["sube_isim"];
-                            $sube_hakkinda=$_POST["sube_hakkinda"];
-                            $sube_iletisim=$_POST["sube_iletisim"];
-                            $sube_yetkili=$id;
-
-                            $ekle=$db->prepare("insert into sube set sube_isim=?,sube_hakkinda=?,sube_iletisim=?,sube_yetkili=?");
-                            $ekle->execute(array($sube_isim,$sube_hakkinda,$sube_iletisim,$sube_yetkili));
-                        }
-                    ?>   
-                    <!-- şube ekleme kod bitti -->
-                </div>
-
-                <div class="panel panel-default">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -362,7 +302,8 @@
                                     <tr>         
                                         <th>ŞUBE İSİM</th>                                 
                                         <th>ŞUBE HAKKINDA</th>
-                                        <th>ŞUBE İLETİŞİM</th>                                                                         
+                                        <th>ŞUBE İLETİŞİM</th>
+                                        <th>SİL</th>                                                                         
                                     </tr>
                                 </thead>
                                     
@@ -370,24 +311,34 @@
                                 <?php                               
                                     $veri= $db->query("SELECT * FROM sube where sube_yetkili ='$id'", PDO::FETCH_ASSOC);            
                                         foreach($veri as $row){  
-                                            $row['sube_id'];                                     
+                                            $row['sube_id']; 
+                                            $a=$row['sube_id'];                                    
                                 ?>
                                 <tr>
                                     <td><?php echo $row['sube_isim'] ?></td>
                                     <td><?php echo $row['sube_hakkinda'] ?></td>
-                                    <td><?php echo $row['sube_iletisim'] ?></td>
-                                </tr> 
+                                    <td><?php echo $row['sube_iletisim'] ?></td>                                    
+                                    <td class="center">
+                                    <?php echo "<a href='sube_sil.php?id=".$a."'onclick='return confirmDel();'>";?>
+                                    <p type="submit" name="urun_delete" class="btn btn-danger">Delete</p></a>
+                                    </td>                                  
+                                </tr>                                 
                                 <?php
                                 }
                                 ?>                                      
-                                </tbody>                           
+                                </tbody>                                                 
                             </table>
+                             <img src="<?php echo $row['sube_reyon'] ?>" style="width: 100%; height: 350px;"> 
                         </div>                      
                     </div>
+                    </div>
+                    <a href="firma_reyon.php" style="float: right;">Reyon sayfasına İlerle</a>
+                    
                 </div>
             </div>
             <!--END BLOCK SECTION --> 
 
+            </div>
         </div>
      <!--END PAGE CONTENT -->
 
