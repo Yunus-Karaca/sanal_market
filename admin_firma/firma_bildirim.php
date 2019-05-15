@@ -222,15 +222,11 @@
                 </li>
                 <!-- FİRMA BİTTİ -->
 
-                <!-- İSTATİSTİKLER İŞLEMLERİ KISMI -->
+               <!-- İSTATİSTİKLER İŞLEMLERİ KISMI -->
                 <li class="panel">
-                    <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#blank-nav5">
+                    <a href="firma_istatistik.php" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#blank-nav5">
                         İSTATİSTİK İŞLEMLERİ                                     
-                    </a>
-                    <ul class="collapse" id="blank-nav5">                        
-                        <li><a href="blank.html"><i class="icon-angle-right"></i> Blank Page One  </a></li>
-                        <li><a href="blank2.html"><i class="icon-angle-right"></i> Blank Page Two  </a></li>
-                    </ul>
+                    </a>                   
                 </li>
                 <!-- İSTATİSTİKLER BİTTİ -->
 

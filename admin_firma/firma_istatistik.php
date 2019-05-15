@@ -1,18 +1,21 @@
-﻿<?php require_once("../baglan.php"); ?>
+<?php require_once("../baglan.php"); ?>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!--> <html lang="tr"> <!--<![endif]-->
-<!-- BEGIN HEAD -->
+
+<!-- BEGIN HEAD-->
 <head>
+   
     <meta charset="UTF-8" />
-    <title>SANAL | MARKET </title>
+    <title>SANAL | MARKET</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
      <!--[if IE]>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <![endif]-->
+    <!-- GLOBAL STYLES -->
     <!-- GLOBAL STYLES -->
     <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
@@ -22,35 +25,37 @@
     <!--END GLOBAL STYLES -->
 
     <!-- PAGE LEVEL STYLES -->
-    <link href="assets/css/layout2.css" rel="stylesheet" />
-    <link href="assets/plugins/flot/examples/examples.css" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/plugins/timeline/timeline.css" />
+   
     <!-- END PAGE LEVEL  STYLES -->
-     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+    <!-- PAGE LEVEL STYLES -->
+    <!-- END PAGE LEVEL  STYLES -->
+       <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 </head>
-
-    <!-- END HEAD -->
-
-    <!-- BEGIN BODY -->
+    <!-- END  HEAD-->
+    <!-- BEGIN BODY-->
 <body class="padTop53 " >
-    <?php session_start(); ?>
+     <?php session_start(); ?>
     <?php 
         if($_SESSION){      
             $id=$_SESSION["id"];          
             $uye=$_SESSION["uye"]; 
-            $eposta=$_SESSION["eposta"];        
+            $eposta=$_SESSION["eposta"];
+            $firma=$_SESSION["firma"];        
         }
     ?> 
+     <!-- MAIN WRAPPER -->
+    <div id="wrap">
 
-    <!-- MAIN WRAPPER -->
-    <div id="wrap" >     
-        <!-- HEADER SECTION -->
+
+         <!-- HEADER SECTION -->
         <div id="top">
-            <nav class="navbar navbar-inverse navbar-fixed-top " style="padding-top: 10px;">
+
+           <nav class="navbar navbar-inverse navbar-fixed-top " style="padding-top: 10px;">
                 <a data-original-title="Show/Hide Menu" data-placement="bottom" data-tooltip="tooltip" class="accordion-toggle btn btn-primary btn-sm visible-xs" data-toggle="collapse" href="#menu" id="menu-toggle">
                     <i class="icon-align-justify"></i>
                 </a>
@@ -128,10 +133,12 @@
                 </ul>
 
             </nav>
+
         </div>
         <!-- END HEADER SECTION -->
 
-        
+
+ 
         <!-- MENU SECTION -->
        <div id="left" >
             <div class="media user-media well-small">
@@ -252,165 +259,266 @@
 
 
         <!--PAGE CONTENT -->
-        <div id="content">  
-            <div class="inner" style="min-height: 700px;">
+        <div id="content">
+
+            <div class="inner" style="min-height:1200px;">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <h3> Admin Dashboard </h3>
+                        <h3>FİRMA İSTATİSTİK İŞLEMLERİNE HOŞGELDİNİZ</h3>
                     </div>
                 </div>
-                  <hr />
-
-                 <!--BLOCK SECTION -->
-                 <div class="row">
-                    <div class="col-lg-12">
-                        <div style="text-align: center;">
-                           
-                            <a class="quick-btn" href="#">
-                                <i class="icon-check icon-2x"></i>
-                                <span> Products</span>
-                                <span class="label label-danger">2</span>
-                            </a>
-
-                            <a class="quick-btn" href="#">
-                                <i class="icon-envelope icon-2x"></i>
-                                <span>Messages</span>
-                                <span class="label label-success">456</span>
-                            </a>
-                            <a class="quick-btn" href="#">
-                                <i class="icon-signal icon-2x"></i>
-                                <span>Profit</span>
-                                <span class="label label-warning">+25</span>
-                            </a>
-                            <a class="quick-btn" href="#">
-                                <i class="icon-external-link icon-2x"></i>
-                                <span>value</span>
-                                <span class="label btn-metis-2">3.14159265</span>
-                            </a>
-                            <a class="quick-btn" href="#">
-                                <i class="icon-lemon icon-2x"></i>
-                                <span>tasks</span>
-                                <span class="label btn-metis-4">107</span>
-                            </a>
-                            <a class="quick-btn" href="#">
-                                <i class="icon-bolt icon-2x"></i>
-                                <span>Tickets</span>
-                                <span class="label label-default">20</span>
-                            </a>
- 
-                        </div>
-                    </div>
-                </div>
-                  <!--END BLOCK SECTION -->
                 <hr />
-             
-            </div>
-        </div>
-        <!--END PAGE CONTENT -->
 
-        <!-- RIGHT STRIP  SECTION -->
-        <div id="right">
-            <div class="well well-small">
-                <ul class="list-unstyled">
-                    <li>Visitor &nbsp; : <span>23,000</span></li>
-                    <li>Users &nbsp; : <span>53,000</span></li>
-                    <li>Registrations &nbsp; : <span>3,000</span></li>
-                    <li><a href="#" data-toggle="modal" data-target="#formModal"><i class="icon-gear"></i> Ayarlar </a></li>
-                    <?php                               
-                        $veri= $db->query("SELECT * FROM uye where uye_id='$id'", PDO::FETCH_ASSOC);
-                            foreach($veri as $row){  
-                                $row['uye_id'];                        
-                    ?>
-                    <!-- bilgi düzenle modal -->
-                    <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header text-center">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title" id="H2">Bilgilerini Düzenle</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <form role="form" action="" method="post">
-                                        <div class="form-group">
-                                            <input class="form-control" name="uye_eposta" maxlength="50" id="message-text1"  
-                                            placeholder="E-mail" value="<?php echo $row['uye_eposta']; ?>" />
-                                        </div>
+                <div class="row">
+                    <div class="col-lg-12 ">
+                     	<div class="panel panel-default">
+                            <div class="panel-heading text-center">
+                                GENEL İSTATİSTİK DURUMU
+                            </div>
+                            
+                            <div class="panel-body">
+                            <!-- ÜRÜNLERE YAPILAN TOPLAM YORUM SAYISI -->	
+                            <?php 
+                                $a=$db->prepare("SELECT yorum_urunid FROM yorum WHERE yorum_firmaid=0");
+                                $a->execute();
+                                    foreach($a as $row){                                   
+                                        $m=$row["yorum_urunid"]; 
+                                        $veri = $db->prepare("SELECT * FROM urun where urun_id=?");                        
+                                        $veri->execute(array($m));                         
+                                        $x = $veri->fetchAll();
+                                        $xx = $a->rowCount();                                  
+                                            if($xx){    
+                                                foreach($x as $b){  
+                            ?>
+                            <?php
+                            }  
+                            }                          
+                            else{         
+                                echo "Veri bulunmamaktadır";  
+                            } 
+                            }    
+                            ?>                        
+                            <p>Toplam Yorum Sayısı:<b> <?php echo $xx;?></b></p>
+                            <!-- ÜRÜNLERE YAPILAN TOPLAM YORUM SAYISI BİTTİ -->
 
-                                        <div class="form-group">
-                                            <input class="form-control" type="password" name="uye_sifre" maxlength="50" id="message-text2"  placeholder="Şifre" value="<?php echo $row['uye_sifre']; ?>" />
-                                        </div>
+                            <!-- ÜRÜNLERE YAPILAN TOPLAM VEĞENİ SAYISI -->
+                            <?php 
+								$veri = $db->prepare("SELECT * FROM urun where urun_favori>? and urun_firma=? ");
+								$veri->execute(array(0,$firma));
+									  
+								$x = $veri->fetchAll();
+								$xx = $veri->rowCount();								  
+									if($xx){	
+										foreach($x as $b){	
+							?>
+                            <p>Toplam Beğeni Sayısı:<b> <?php echo $xx;?></b></p>
+                            <?php
+							}  
+							}                          
+                            else{         
+                                echo "Veri bulunmamaktadır";  
+                            }                               
+                            ?>  
+                            <!-- ÜRÜNLERE YAPILAN TOPLAM BEĞENİ SAYISI BİTTİ -->
 
-                                        <div class="form-group">
-                                            <input class="form-control" name="uye_telefon" maxlength="11" id="message-text3" 
-                                            onkeypress="return isNumberKey(event)" placeholder="Telefon(05xxxxxxxxx)" 
-                                            value="<?php echo $row['uye_telefon']; ?>"/>
-                                            <script type="text/javascript">
-                                                 function isNumberKey(evt) {
-                                                    var charCode = (evt.which) ? evt.which : event.keyCode;
-                                                    if (charCode > 31 && (charCode < 48 || charCode > 57))
-                                                        return false;
-                                                    return true;
-                                                }
-                                            </script>            
-                                        </div>                               
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
-                                    <button type="submit" name="btn_düzenle" class="btn btn-primary">Verileri Kaydet</button>
-                                </div>
-                                </form>
+                            <!-- ÜRÜNLERE YAPILAN TOPLAM ŞUBE SAYISI -->
+                            <?php 
+								$veri = $db->prepare("SELECT * FROM sube where sube_yetkili=? ");
+								$veri->execute(array($id));
+									  
+								$x = $veri->fetchAll();
+								$xx = $veri->rowCount();								  
+									if($xx){	
+										foreach($x as $b){	
+							?>
+                           <p>Toplam Şube Sayısı:<b> <?php echo $xx;?></b></p>
+                            <?php
+							}  
+							}                          
+                            else{         
+                                echo "Veri bulunmamaktadır";  
+                            }                               
+                            ?>  
+                            <!-- ÜRÜNLERE YAPILAN TOPLAM ŞUBE SAYISI BİTTİ -->
+
+                            <!-- ÜRÜNLERE YAPILAN TOPLAM ÜRÜN SAYISI -->
+                            <?php 
+								$veri = $db->prepare("SELECT * FROM urun where urun_firma=? ");
+								$veri->execute(array($firma));
+									  
+								$x = $veri->fetchAll();
+								$xx = $veri->rowCount();								  
+									if($xx){	
+										foreach($x as $b){	
+							?>
+							<?php
+							}  
+							}                          
+                            else{         
+                                echo "Veri bulunmamaktadır";  
+                            }                               
+                            ?>  
+                        	Toplam Ürün Sayısı:<b><?php echo $xx;?></b>  
+                        	<!-- ÜRÜNLERE YAPILAN TOPLAM ÜRÜN SAYISI BİTTİ -->
+                            </div>                                   
+                        </div>  
+                    </div>
+                </div>
+                <hr />
+                           
+                <div class="row">                  
+                    <div class="col-lg-4">                   
+                        <div class="panel panel-default">
+                            <div class="panel-heading text-center">
+                                ÜRÜNLERİMİZE YAPILAN YORUMLAR
+                            </div>
+                            
+                            <div class="panel-body">
+                            <?php 
+                                $a=$db->prepare("SELECT yorum_urunid FROM yorum WHERE yorum_firmaid=0");
+                                $a->execute();
+                                    foreach($a as $row){                                   
+                                        $m=$row["yorum_urunid"]; 
+                                        $veri = $db->prepare("SELECT * FROM urun where urun_id=?");                        
+                                        $veri->execute(array($m));                         
+                                        $x = $veri->fetchAll();
+                                        $xx = $a->rowCount();                                  
+                                            if($xx){    
+                                                foreach($x as $b){  
+                            ?>
+                            <p style="float:right;"><?php echo $b["urun_firma"];?></p>
+                            <p><?php echo $b["urun_isim"];?></p>
+                            <?php
+                            }  
+                            }                          
+                            else{         
+                                echo "Veri bulunmamaktadır";  
+                            } 
+                            }    
+                            ?>  
+                            </div>          
+                            <div class="panel-footer">
+                                Toplam Yorum Sayısı:<b><?php echo $xx;?></b>            
                             </div>
                         </div>
                     </div>
-                    <?php
-                    }
-                    ?>      
-                    <!-- bilgi düzenle modal bitti -->
 
-                    <!-- PHP bilgi GÜNCELLEME KOD -->
-                    <?php 
-                        if(isset($_POST['btn_düzenle'])){   
-                            $uye_eposta = $_POST["uye_eposta"];
-                            $uye_sifre = $_POST["uye_sifre"];
-                            $uye_telefon = $_POST["uye_telefon"];
-                    
-                            $guncelle=$db->prepare("UPDATE uye SET uye_eposta=?,uye_sifre=?,uye_telefon=? WHERE uye_id=?");
-                            $guncelle->execute(array($uye_eposta,$uye_sifre,$uye_telefon,$id));
-                        }                   
-                    ?>
-                    <!-- PHP bilgi GÜNCELLEME -->
-                </ul>
+                    <div class="col-lg-4">                   
+                        <div class="panel panel-default">
+                            <div class="panel-heading text-center">
+                                ÜRÜNLERİMİZE YAPILAN BEĞENİ
+                            </div>
+                            
+                            <div class="panel-body">
+                            <?php 
+								$veri = $db->prepare("SELECT * FROM urun where urun_favori>? and urun_firma=? ");
+								$veri->execute(array(0,$firma));
+									  
+								$x = $veri->fetchAll();
+								$xx = $veri->rowCount();								  
+									if($xx){	
+										foreach($x as $b){	
+							?>
+                            <p><?php echo $b["urun_isim"];?></p>
+                            <?php
+							}  
+							}                          
+                            else{         
+                                echo "Veri bulunmamaktadır";  
+                            }                               
+                            ?>  
+                            </div>          
+                            <div class="panel-footer">
+                                Toplam Beğeni Sayısı:<b><?php echo $xx;?></b>            
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="col-lg-4">                   
+                        <div class="panel panel-default">
+                            <div class="panel-heading text-center">
+                                ŞUBELERİMİZ
+                            </div>
+                            
+                            <div class="panel-body">
+                            <?php 
+								$veri = $db->prepare("SELECT * FROM sube where sube_yetkili=? ");
+								$veri->execute(array($id));
+									  
+								$x = $veri->fetchAll();
+								$xx = $veri->rowCount();								  
+									if($xx){	
+										foreach($x as $b){	
+							?>
+                            <p><?php echo $b["sube_isim"];?></p>
+                            <?php
+							}  
+							}                          
+                            else{         
+                                echo "Veri bulunmamaktadır";  
+                            }                               
+                            ?>  
+                            </div>          
+                            <div class="panel-footer">
+                                Toplam Şube Sayısı:<b><?php echo $xx;?></b>            
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">                   
+                        <div class="panel panel-default">
+                            <div class="panel-heading text-center">
+                                TOPLAM ÜRÜN SAYISI
+                            </div>
+                            
+                            <div class="panel-body">
+                            <?php 
+								$veri = $db->prepare("SELECT * FROM urun where urun_firma=? ");
+								$veri->execute(array($firma));
+									  
+								$x = $veri->fetchAll();
+								$xx = $veri->rowCount();								  
+									if($xx){	
+										foreach($x as $b){	
+							?>
+							<?php
+							}  
+							}                          
+                            else{         
+                                echo "Veri bulunmamaktadır";  
+                            }                               
+                            ?>  
+                        	Toplam Ürün Sayısı:<b><?php echo $xx;?></b>  
+                            
+                            </div>          
+                            <div class="panel-footer">
+                                       
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
             </div>
-        </div>
-         <!-- END RIGHT STRIP  SECTION -->
+
+       <!--END PAGE CONTENT -->
+
+
     </div>
 
-    <!--END MAIN WRAPPER -->
+     <!--END MAIN WRAPPER -->
 
-    <!-- FOOTER -->
+   <!-- FOOTER -->
     <div id="footer">
         <p>&copy;  binarytheme &nbsp;2014 &nbsp;</p>
     </div>
     <!--END FOOTER -->
-
-
-    <!-- GLOBAL SCRIPTS -->
+     <!-- GLOBAL SCRIPTS -->
     <script src="assets/plugins/jquery-2.0.3.min.js"></script>
-     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/plugins/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     <!-- END GLOBAL SCRIPTS -->
-
     <!-- PAGE LEVEL SCRIPTS -->
-    <script src="assets/plugins/flot/jquery.flot.js"></script>
-    <script src="assets/plugins/flot/jquery.flot.resize.js"></script>
-    <script src="assets/plugins/flot/jquery.flot.time.js"></script>
-    <script  src="assets/plugins/flot/jquery.flot.stack.js"></script>
-    <script src="assets/js/for_index.js"></script>
-   
-    <!-- END PAGE LEVEL SCRIPTS -->
-
-
 </body>
-
-    <!-- END BODY -->
+    <!-- END BODY-->
+    
 </html>
