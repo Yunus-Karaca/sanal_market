@@ -167,13 +167,11 @@
 
           <ul id="menu" class="collapse">
 
-                 
                 <li class="panel">
                     <a href="index.php" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#blank-nav">
                         ANASAYFA          
                     </a>               
                 </li>
-                
 
                 <!-- FİRMA CRUD İŞLEMLERİ KISMI -->
                 <li class="panel">
@@ -196,9 +194,17 @@
                 <li class="panel">
                     <a href="admin_onay.php" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#blank-nav3">
                         ONAY İŞLEMLERİ                                     
-                    </a>         
+                    </a>                  
                 </li>
                 <!-- ADMİN ONAY  BİTTİ -->
+
+                <!-- ADMİN SANALKART İŞLEMLERİ KISMI -->
+                <li class="panel">
+                    <a href="admin_sanalkart.php" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#blank-nav3">
+                        SANALKART İŞLEMLERİ                                     
+                    </a>          
+                </li>
+                <!-- ADMİN SANALKART  BİTTİ -->
 
                 <!-- MESAJ İŞLEMLERİ KISMI -->
                 <li class="panel">
@@ -219,7 +225,6 @@
                 <li><a href="cikis.php"><i class="icon-signin"></i> Login Page </a></li>
 
              </ul>
-
         </div>
         <!--END MENU SECTION -->
 

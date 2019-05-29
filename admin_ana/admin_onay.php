@@ -185,7 +185,7 @@
                 <li class="panel">
                     <a href="admin_kullanıcı.php" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#blank-nav2">
                         MÜŞTERİ İŞLEMLERİ                                     
-                    </a>                  
+                    </a>                   
                 </li>
                 <!-- MÜŞTERİ CRUD BİTTİ -->
 
@@ -194,9 +194,17 @@
                 <li class="panel">
                     <a href="admin_onay.php" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#blank-nav3">
                         ONAY İŞLEMLERİ                                     
-                    </a>          
+                    </a>                  
                 </li>
                 <!-- ADMİN ONAY  BİTTİ -->
+
+                <!-- ADMİN SANALKART İŞLEMLERİ KISMI -->
+                <li class="panel">
+                    <a href="admin_sanalkart.php" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#blank-nav3">
+                        SANALKART İŞLEMLERİ                                     
+                    </a>          
+                </li>
+                <!-- ADMİN SANALKART  BİTTİ -->
 
                 <!-- MESAJ İŞLEMLERİ KISMI -->
                 <li class="panel">
@@ -206,7 +214,7 @@
                 </li>
                 <!-- MESAJ BİTTİ -->
 
-                 <!-- İSTATİSTİKLER İŞLEMLERİ KISMI -->
+                <!-- İSTATİSTİKLER İŞLEMLERİ KISMI -->
                 <li class="panel">
                     <a href="admin_istatistik.php" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#blank-nav5">
                         İSTATİSTİK İŞLEMLERİ                                     
