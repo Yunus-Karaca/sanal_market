@@ -185,22 +185,15 @@
                 </li>
                 <!-- FİRMA CRUD BİTTİ -->
 
-                <!-- KATEGORİ CRUD İŞLEMLERİ KISMI -->
-                <li class="panel">
-                    <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#blank-nav2">
-                        KATEGORİ İŞLEMLERİ                                     
-                    </a>                   
-                </li>
-                <!-- KATEGORİ CRUD BİTTİ -->
 
-
-                <!-- İSTATİSTİKLER İŞLEMLERİ KISMI -->
+                <!-- SİPARİŞ İŞLEMLERİ KISMI -->
                 <li class="panel">
-                    <a href="firma_istatistik.php" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#blank-nav5">
-                        İSTATİSTİK İŞLEMLERİ                                     
-                    </a>                   
+                    <a href="firma_siparis.php" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#blank-nav3">
+                        SİPARİŞ İŞLEMLERİ                                     
+                    </a>
+                    
                 </li>
-                <!-- İSTATİSTİKLER BİTTİ -->
+                <!-- SİPARİŞ  BİTTİ -->
 
                 <!-- FİRMA İŞLEMLERİ KISMI -->
                 <li class="panel">
@@ -216,27 +209,12 @@
 
                 <!-- İSTATİSTİKLER İŞLEMLERİ KISMI -->
                 <li class="panel">
-                    <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#blank-nav5">
+                    <a href="firma_istatistik.php" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#blank-nav5">
                         İSTATİSTİK İŞLEMLERİ                                     
                     </a>
-                    <ul class="collapse" id="blank-nav5">                        
-                        <li><a href="blank.html"><i class="icon-angle-right"></i> Blank Page One  </a></li>
-                        <li><a href="blank2.html"><i class="icon-angle-right"></i> Blank Page Two  </a></li>
-                    </ul>
+                    
                 </li>
                 <!-- İSTATİSTİKLER BİTTİ -->
-
-                <!-- SANALKART İŞLEMLERİ KISMI -->
-                <li class="panel">
-                    <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#blank-nav6">
-                        SANALKART İŞLEMLERİ                                     
-                    </a>
-                    <ul class="collapse" id="blank-nav6">                        
-                        <li><a href="blank.html"><i class="icon-angle-right"></i> Blank Page One  </a></li>
-                        <li><a href="blank2.html"><i class="icon-angle-right"></i> Blank Page Two  </a></li>
-                    </ul>
-                </li>
-                <!-- SANALKART BİTTİ -->
 
                 <!-- İNDİRİM İŞLEMLERİ KISMI -->
                 <li class="panel">

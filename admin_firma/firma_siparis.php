@@ -1,9 +1,11 @@
 <?php require_once("../baglan.php"); ?>
 <!DOCTYPE html>
-<html>
-  <!-- BEGIN HEAD-->
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="tr"> <!--<![endif]-->
+
+<!-- BEGIN HEAD-->
 <head>
-   
     <meta charset="UTF-8" />
     <title>SANAL | MARKET</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -22,14 +24,7 @@
     <!--END GLOBAL STYLES -->
 
     <!-- PAGE LEVEL STYLES -->
-    <!-- Font Awesome Icons -->
-    <link href="assets/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <!-- Ionicons -->
-    <link href="assets/css/ionicons.min.css" rel="stylesheet" type="text/css" />
-    <!-- iCheck -->
-    <link href="assets/plugins/iCheck/flat/blue.css" rel="stylesheet" type="text/css" />
-    <!-- bootstrap wysihtml5 - text editor -->
-    <link href="assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
+    
     <!-- END PAGE LEVEL  STYLES -->
 
     <!-- PAGE LEVEL STYLES -->
@@ -41,17 +36,21 @@
     <![endif]-->
 </head>
     <!-- END  HEAD-->
-  <body class="padTop53 " >
+    <!-- BEGIN BODY-->
+<body class="padTop53 " >
     <?php session_start(); ?>
     <?php 
         if($_SESSION){               
             $uye=$_SESSION["uye"]; 
-            $eposta=$_SESSION["eposta"];        
+            $eposta=$_SESSION["eposta"];
+            $b= $_SESSION["firma"];         
         }
     ?>  
+     <!-- MAIN WRAPPER -->
     <div id="wrap">
-      
-     <!-- HEADER SECTION -->
+
+
+         <!-- HEADER SECTION -->
         <div id="top">
 
             <nav class="navbar navbar-inverse navbar-fixed-top " style="padding-top: 10px;">
@@ -111,7 +110,8 @@
                             </li>
                         </ul>
                     </li>
-                    <!--END MESSAGES SECTION -->                   
+                    <!--END MESSAGES SECTION -->
+                   
 
                     <!--ADMIN SETTINGS SECTIONS -->
 
@@ -150,7 +150,7 @@
                         <h5 class="media-heading" style="font-weight: inherit; text-transform: capitalize; font-size: 16px;">
                             <?php 
                             if($_SESSION){               
-                                echo $uye;         
+                                echo $uye;                                    
                             }
                             ?>  
                         </h5>
@@ -236,91 +236,75 @@
 
         <!--PAGE CONTENT -->
         <div id="content">
-        <div class="inner" style="min-height:700px;">
-
-        <!-- Right side column. Contains the navbar and content of the page -->
-        <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-          <h3>MESAJ İŞLEMLERİNE HOŞGELDİNİZ</h3>
-          <hr />
-        </section>
-
-        <!-- Main content -->
-        <section class="content">
-          <div class="row">
-            <div class="col-md-2">
-              <a href="firma_mailbox.php" class="btn btn-primary btn-block margin-bottom">Gelen Kutusuna Git</a>
-              <div class="box box-solid">
-                <div class="box-header with-border">
-                  <h3 class="box-title">Klasörler</h3>
+            <div class="inner" style="min-height:1200px;">
+    
+                <div class="row">
+                	<div class="col-lg-12 text-center">
+                        <h3>  SİPARİŞ İŞLEMLERİ </h3>
+                    </div> 
                 </div>
-                <div class="box-body no-padding">
-                  <ul class="nav nav-pills nav-stacked">
-                    <li class="active"><a href="firma_mailbox.php"><i class="fa fa-inbox"></i> Gelen Kutusu <span class="label label-primary pull-right"></span></a></li>
-                    <li><a href="#"><i class="fa fa-envelope-o"></i> Gönderilen</a></li>
-                    <li><a href="#"><i class="fa fa-file-text-o"></i> Taslaklar</a></li>
-                    <li><a href="#"><i class="fa fa-filter"></i> Önemsiz <span class="label label-waring pull-right"></span></a></li>
-                    <li><a href="#"><i class="fa fa-trash-o"></i> Çöp</a></li>
-                  </ul>
-                </div><!-- /.box-body -->
-              </div><!-- /. box -->
-            </div><!-- /.col -->
+                <hr /> 
 
-             <div class="col-md-10">
-              <div class="box box-primary">
-                <div class="box-header with-border">
-                  <h3 class="box-title">Yeni Mesaj Oluştur</h3>
-                </div><!-- /.box-header -->
-                <div class="box-body">
-                  <form action="" method="post" enctype="multipart/form-data">
-                  <div class="form-group">
-                    <input class="form-control" name="mesaj_alici" placeholder="To:"/>
-                  </div>
-                  <div class="form-group">
-                    <input class="form-control" name="mesaj_konu" placeholder="Subject:"/>
-                  </div>
-                  <div class="form-group">
-                    <textarea id="compose-textarea" name="mesaj_icerik" class="form-control" rows="15"></textarea>
-                  </div><br>             
-                </div><!-- /.box-body -->
-                <div class="box-footer">
-                  <div class="pull-right">
-                    <button type="submit" name="btn_mesaj" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Gönder</button>
-                  </div>
-                </div><!-- /.box-footer -->
-                </form>
-              </div><!-- /. box -->
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-        </section><!-- /.content -->
-      </div><!-- /.content-wrapper -->
+                <div class="row">
+                <div class="col-lg-12">
+   
+                    <?php                            
+                        $veri= $db->query("SELECT * FROM odeme where odeme_durum=0  ", PDO::FETCH_ASSOC);            
+                            foreach($veri as $row){  
+                               $sepet_id=$row['sepet_id'];
 
+                               $sepet= $db->query("SELECT * FROM sepet where sepet_uyeid='$sepet_id' and sepet_urun_firma='$b' ", PDO::FETCH_ASSOC);
+                               $kisi=$db->query("SELECT * FROM uye where uye_id='$sepet_id' ", PDO::FETCH_ASSOC);
+                              foreach ($kisi as $key => $val) { }
+                    ?>
 
-      <!-- PHP mesaj gönderme KOD -->
-      <?php                     
-          if(isset($_POST['btn_mesaj'])){
-            $mesaj_gonderen=$_SESSION["uye"];
-            $mesaj_alici = $_POST["mesaj_alici"];
-            $mesaj_konu = $_POST["mesaj_konu"];
-            $mesaj_icerik = $_POST["mesaj_icerik"];
-                       
-            $ekle=$db->prepare("insert into mesaj set mesaj_gonderen=?,mesaj_alici=?,mesaj_konu=?,mesaj_icerik=?");
-            $ekle->execute(array($mesaj_gonderen,$mesaj_alici,$mesaj_konu,$mesaj_icerik));
-          }
-      ?>
-      <!-- PHP mesaj gönderme KOD -->
+                    <div class="col-lg-4">                        
+                        <div class="panel panel-default">
+                            <form action="" method="post" enctype="multipart/form-data">
+                                <div class="panel panel-default">
+                                    
+                                    <div class="panel-heading">
+                                        <b>Sipariş Veren:</b> <?php echo $val['uye_adsoyad']; ?>
+                                       
+                                    </div>
+                                    <div class="panel-body">
+                                    <?php 
+                                        foreach ($sepet as $key => $value) {
+                               $sepet_urun_id=$value['sepet_urunid'];
+                               $urun=$db->query("SELECT * FROM urun where urun_id='$sepet_urun_id' ", PDO::FETCH_ASSOC);
+                               foreach ($urun as $key => $values) {
+                                  $urun_isim=$values['urun_isim'];
+                               }
+                                    ?>
+                                       <p> <?php echo $urun_isim; ?> </p> 
 
+                                  <?php } ?>
+                                    </div>
+                                   
+                                    <div class="panel-footer">
+                                       <a type="submit"  href="firma_siparis_onay.php?id=<?php echo $sepet_id; ?>"name="btn_siparis_onay" class="btn btn-primary btn-sm">Sipariş Onay</a>
+                                    </div>
+                                </div>
+                                
+                            </form>
+                        </div>                                                                                              
+                    </div>                          
+                    <?php
+                    }
+                    
+                    ?>                                               
+                                                              
+                </div>
+                </div>               
+ 
+            </div>
+        </div>
+        <!--END PAGE CONTENT -->
 
-
-      </div >
-      </div>
-      <!--END PAGE CONTENT -->
-
-      </div>
+    </div>
      <!--END MAIN WRAPPER -->
 
-      <!-- FOOTER -->
+   <!-- FOOTER -->
     <div id="footer">
         <p>&copy;  binarytheme &nbsp;2014 &nbsp;</p>
     </div>
@@ -331,26 +315,9 @@
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/plugins/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     <!-- END GLOBAL SCRIPTS -->
-
     <!-- PAGE LEVEL SCRIPTS -->
-    <!-- jQuery 2.1.3 -->
-    <script src="assets/plugins/jQuery/jQuery-2.1.3.min.js"></script>
-    <!-- Bootstrap 3.3.2 JS -->
-    <script src="assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <!-- Slimscroll -->
-    <script src="assets/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-    <!-- FastClick -->
-    <script src='assets/plugins/fastclick/fastclick.min.js'></script>
-    <!-- iCheck -->
-    <script src="assets/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
-    <!-- Bootstrap WYSIHTML5 -->
-    <script src="assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
-    <!-- Page Script -->
-    <script>
-      $(function () {
-        //Add text editor
-        $("#compose-textarea").wysihtml5();
-      });
-    </script>
-  </body>
+    
+</body>
+    <!-- END BODY-->
+    
 </html>
