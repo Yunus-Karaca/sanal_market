@@ -380,7 +380,18 @@
 								$odeme_tip="Kapıda Ödeme";
 								$ekle=$db->prepare("insert into odeme set  sepet_id=?,odeme_tutar=?,odeme_tip=?,odeme_adres=?,odeme_kisi=?");
 		                        $ekle->execute(array($_SESSION["id"],$son,$odeme_tip,$adres,$kisi));
+		                        foreach ($sepet as $key => $value)
+						 	{
+						 		$value['sepet_id'];
+						 		$urun=$db->query("select  * from urun where urun_id='".$value["sepet_urunid"]."'")->fetchAll(PDO::FETCH_ASSOC);
+					 			foreach ($urun as $keys => $values)
+					 			{
 
+					 			$stok= $values['urun_stok']-1; 
+					 			$guncelle2=$db->prepare("UPDATE urun SET urun_stok=? WHERE urun_id=?");
+		                        $guncelle2->execute(array($stok,$values['urun_id']));
+								}
+					  		}
 		                        $guncelle=$db->prepare("UPDATE sepet SET sepet_durum=? WHERE sepet_uyeid=?");
 		                        $guncelle->execute(array(1,$_SESSION["id"])); 
 		                        $hata = $ekle->errorInfo();
@@ -396,7 +407,18 @@
 								$odeme_tip="Kredi Kartı";
 								$ekle=$db->prepare("insert into odeme set  sepet_id=?,odeme_tutar=?,odeme_tip=?,odeme_adres=?,odeme_kisi=?");
 		                        $ekle->execute(array($_SESSION["id"],$son,$odeme_tip,$adres,$kisi));
+		                        foreach ($sepet as $key => $value)
+						 	{
+						 		$value['sepet_id'];
+						 		$urun=$db->query("select  * from urun where urun_id='".$value["sepet_urunid"]."'")->fetchAll(PDO::FETCH_ASSOC);
+					 			foreach ($urun as $keys => $values)
+					 			{
 
+					 			$stok= $values['urun_stok']-1; 
+					 			$guncelle2=$db->prepare("UPDATE urun SET urun_stok=? WHERE urun_id=?");
+		                        $guncelle2->execute(array($stok,$values['urun_id']));
+								}
+					  		}
 		                        $guncelle=$db->prepare("UPDATE sepet SET sepet_durum=? WHERE sepet_uyeid=?");
 		                        $guncelle->execute(array(1,$_SESSION["id"])); 
 		                        $hata = $ekle->errorInfo();
@@ -413,7 +435,18 @@
 								$odeme_tip="sanalkart";
 								$ekle=$db->prepare("insert into odeme set  sepet_id=?,odeme_tutar=?,odeme_tip=?,odeme_adres=?,odeme_kisi=?");
 		                        $ekle->execute(array($_SESSION["id"],$son,$odeme_tip,$adres,$kisi));
+								foreach ($sepet as $key => $value)
+						 	{
+						 		$value['sepet_id'];
+						 		$urun=$db->query("select  * from urun where urun_id='".$value["sepet_urunid"]."'")->fetchAll(PDO::FETCH_ASSOC);
+					 			foreach ($urun as $keys => $values)
+					 			{
 
+					 			$stok= $values['urun_stok']-1; 
+					 			$guncelle2=$db->prepare("UPDATE urun SET urun_stok=? WHERE urun_id=?");
+		                        $guncelle2->execute(array($stok,$values['urun_id']));
+								}
+					  		}
 		                        $guncelle=$db->prepare("UPDATE sepet SET sepet_durum=? WHERE sepet_uyeid=?");
 		                        $guncelle->execute(array(1,$_SESSION["id"])); 
 		                        $hata = $ekle->errorInfo();

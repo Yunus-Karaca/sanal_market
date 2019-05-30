@@ -3,6 +3,7 @@
 <html>
   <!-- BEGIN HEAD-->
 <head>
+   
     <meta charset="UTF-8" />
     <title>SANAL | MARKET</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -21,14 +22,7 @@
     <!--END GLOBAL STYLES -->
 
     <!-- PAGE LEVEL STYLES -->
-    <!-- Font Awesome Icons -->
-    <link href="assets/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <!-- Ionicons -->
-    <link href="assets/css/ionicons.min.css" rel="stylesheet" type="text/css" />
-    <!-- iCheck -->
-    <link href="assets/plugins/iCheck/flat/blue.css" rel="stylesheet" type="text/css" />
-    <!-- END PAGE LEVEL  STYLES -->
-
+  
     <!-- PAGE LEVEL STYLES -->
     <!-- END PAGE LEVEL  STYLES -->
        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -64,8 +58,7 @@
                 <!-- END LOGO SECTION -->
                 <ul class="nav navbar-top-links navbar-right">
 
-                    
-                    <!-- MESSAGES SECTION -->
+                        <!-- MESSAGES SECTION -->
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             <span class="label label-success">2</span><i class="icon-envelope-alt"></i>&nbsp; <i class="icon-chevron-down"></i>
@@ -108,10 +101,10 @@
                                 </a>
                             </li>
                         </ul>
+
                     </li>
                     <!--END MESSAGES SECTION -->
-                    
-                    
+
 
                     <!--ADMIN SETTINGS SECTIONS -->
 
@@ -149,8 +142,7 @@
                     <h5 class="media-heading" style="font-weight: inherit; text-transform: capitalize; font-size: 16px;">
                         <?php 
                         if($_SESSION){               
-                            echo $_SESSION["uye"];
-                            $b=$_SESSION["uye"];                    
+                            echo $_SESSION["uye"];                                             
                         }
                         ?>  
                     </h5>
@@ -165,7 +157,7 @@
             </div>
 
             <ul id="menu" class="collapse">
-                
+
                 <li class="panel">
                     <a href="../index_kullanici.php" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#blank-nav">
                         ANASAYFA          
@@ -187,10 +179,11 @@
                     </a>                   
                 </li>
                 <!-- SİPARİŞ BİTTİ -->
+
                  <!-- FAVORİ MARKETLERİM İŞLEMLERİ KISMI -->
                 <li class="panel">
                     <a href="kullanici_favori.php" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#blank-nav2">
-                        FAVORİ ÜRÜNLERİM                                       
+                        FAVORİ MARKETLERİM                                     
                     </a>                   
                 </li>
                 <!-- FAVORİ MARKETLERİM BİTTİ -->
@@ -209,7 +202,8 @@
                 <li class="panel">
                     <a href="kullanici_istatistik.php" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#blank-nav5">
                         İSTATİSTİK İŞLEMLERİ                                     
-                    </a>                   
+                    </a>
+                    
                 </li>
                 <!-- İSTATİSTİKLER BİTTİ -->
 
@@ -228,124 +222,75 @@
         <!-- Right side column. Contains the navbar and content of the page -->
         <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <section class="content-header">
-          <h3>MESAJ İŞLEMLERİNE HOŞGELDİNİZ</h3>
+        <section class="content-header text-center">
+          <h3>SİPARİŞ İŞLEMLERİ</h3>
           <hr />
         </section>
+        <!--BLOCK SECTION -->
+        <div class="row">
+            <div class="col-lg-12">                                
+                    <?php    
+                    $fiyat=0;                        
+                        $veri= $db->query("SELECT * FROM odeme where odeme_durum=1  ", PDO::FETCH_ASSOC);            
+                            foreach($veri as $row){  
+                               $sepet_id=$row['sepet_id'];
 
-        <!-- Main content -->
-        <section class="content">
-          <div class="row">
-            <div class="col-md-2">
-              <a href="admin_compose.php" class="btn btn-primary btn-block margin-bottom">Mesaj Yaz</a>
-              <div class="box box-solid">
-                <div class="box-header with-border">
-                  <h3 class="box-title">Klasörler</h3>
+                               $sepet= $db->query("SELECT * FROM sepet where sepet_uyeid='$sepet_id' ", PDO::FETCH_ASSOC);
+                               $kisi=$db->query("SELECT * FROM uye where uye_id='$sepet_id' ", PDO::FETCH_ASSOC);
+                              foreach ($kisi as $key => $val) { }
+                    ?>
+
+                    <div class="col-lg-4">                        
+                        <div class="panel panel-default">
+                            <form action="" method="post" enctype="multipart/form-data">
+                                <div class="panel panel-default">
+                                    
+                                    <div class="panel-heading">
+                                        <b>Sipariş Veren:</b> <?php echo $val['uye_adsoyad']; ?>
+                                       
+                                    </div>
+                                    <div class="panel-body">
+                                    <?php 
+                                        foreach ($sepet as $key => $value) {
+                               $sepet_urun_id=$value['sepet_urunid']; 
+                               $fiyat=$fiyat+$value['sepet_urunfiyat'];
+                               $urun_adet=$value['sepet_urunadet'];
+                               $urun_fiyat=$value['sepet_urunfiyat'];
+                               $urun=$db->query("SELECT * FROM urun where urun_id='$sepet_urun_id' ", PDO::FETCH_ASSOC);
+                               foreach ($urun as $key => $values) {
+                                  $urun_isim=$values['urun_isim'];                                
+                               }
+                                    ?>
+                                       <p style="float:left;"> <?php echo $urun_isim; ?> &nbsp; &nbsp; &nbsp; 
+                                       <?php echo $urun_adet;?> Adet &nbsp; &nbsp; &nbsp;
+                                        <?php echo $urun_fiyat;?> TL </p>
+                                  <?php } ?>
+                                  <br><br><br>
+                                        <b style="float:right;"> Toplam : <?php echo  $fiyat; ?> TL </b> 
+                                    </div>
+                                   
+                                    <div class="panel-footer">
+                                      <p>Siparişiniz Tamamlandı.</p> 
+                                      <p>Teslimata Çıktı.</p> 
+                                    </div>
+                                </div>
+                                
+                            </form>
+                        </div>                                                                                              
+                    </div>                          
+                    <?php
+                    }
+                    
+                    ?>                                               
+                                                              
                 </div>
-                <div class="box-body no-padding">
-                  <ul class="nav nav-pills nav-stacked">
-                    <li><a href="kullanici_mailbox.php"><i class="fa fa-inbox"></i> Gelen Kutusu <span class="label label-primary pull-right"></span></a></li>
-                    <li class="active"><a href="kullanici_send_mail.php"><i class="fa fa-envelope-o"></i> Gönderilen</a></li>
-                    <li><a href="#"><i class="fa fa-file-text-o"></i> Taslaklar</a></li>
-                    <li><a href="#"><i class="fa fa-filter"></i> Önemsiz <span class="label label-waring pull-right"></span></a></li>
-                    <li><a href="#"><i class="fa fa-trash-o"></i> Çöp</a></li>
-                  </ul>
-                </div><!-- /.box-body -->
-              </div><!-- /. box -->
-            </div><!-- /.col -->
+        </div>
+        <!--END BLOCK SECTION -->
+        
+        </div><!-- /.content-wrapper -->
 
-            <div class="col-md-10">
-              <div class="box box-primary">
-                <div class="box-header with-border">
-                  <h3 class="box-title">Gönderilen</h3>
-                  <div class="box-tools pull-right">
-                    <div class="has-feedback">
-                      <input type="text" class="form-control input-sm" placeholder="Search Mail"/>
-                    </div>
-                  </div><!-- /.box-tools -->
-                </div><!-- /.box-header -->
-                <div class="box-body no-padding">
-                  <div class="mailbox-controls">
-                    <!-- Check all button -->
-                    <button class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
-                    <div class="btn-group">
-                      <button class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-                      <button class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
-                      <button class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
-                    </div><!-- /.btn-group -->
-                    <button class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>                   
-                  </div>
-                  <div class="table-responsive mailbox-messages">
-                    <table class="table table-hover table-striped">                    
-                        <tbody>
-                        <?php  
-                            $veri = $db->prepare("SELECT * FROM mesaj where mesaj_gonderen='$b'"); 
-                            $veri ->execute();
-                                if($veri->rowCount()){                           
-                                foreach($veri as $row){  
-                                    $row['mesaj_id'];
-                                    $a=$row['mesaj_id'];                                            
-                        ?>
-                        <?php 
-                            $icerik =$row['mesaj_icerik']; 
-                            // Yazının karakter sayısı. 
-                            $uzunluk = strlen($icerik); 
-                            // Sınırlandıralacak sayı. 
-                            $sinir = 28; 
-                            // Yazının uzunluğunun sınırdan büyük olup olmadığını kontrol et. 
-                            if ($uzunluk > $sinir) { 
-                            // Eğer büyükse Devamını Oku yazısını ekle. 
-                            $yazdır = substr($icerik,0,$sinir); 
-                            } 
-                            // İçeriği ekrana yazdır. 
-                            $yazdır; 
-                        ?>
-                        <tr>
-                          <td><input type="checkbox" /></td>
-                          <td class="mailbox-star"><i class="fa fa-star text-yellow"></i></td>
-                           
-                          <td class="mailbox-name">
-                            <?php echo "<a href='kullanici_read_mail.php?id=".$a."'>";?>
-                            <?php echo $_SESSION["uye"]; ?></a>
-                          </td>
-                          <td class="mailbox-subject"><b><?php echo $row['mesaj_konu']; ?></b> - <?php echo $yazdır; ?>...</td>
-                          <td class="mailbox-date"><?php echo $row['mesaj_tarih']; ?></td>
-                        </tr> 
-                        <?php
-                        }
-                        }
-                        ?>                        
-                        </tbody>
-                    </table><!-- /.table -->
-                  </div><!-- /.mail-box-messages -->
-                </div><!-- /.box-body -->
-                <div class="box-footer no-padding">
-                  <div class="mailbox-controls">
-                    <!-- Check all button -->
-                    <button class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>                    
-                    <div class="btn-group">
-                      <button class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-                      <button class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
-                      <button class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
-                    </div><!-- /.btn-group -->
-                    <button class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
-                    <div class="pull-right">
-                      1-50/200
-                      <div class="btn-group">
-                        <button class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
-                        <button class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
-                      </div><!-- /.btn-group -->
-                    </div><!-- /.pull-right -->
-                  </div>
-                </div>
-              </div><!-- /. box -->
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-        </section><!-- /.content -->
-      </div><!-- /.content-wrapper -->
-
-      </div >
-      </div>
+        </div >
+        </div>
       <!--END PAGE CONTENT -->
 
       </div>
@@ -362,61 +307,6 @@
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/plugins/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     <!-- END GLOBAL SCRIPTS -->
-
-    <!-- PAGE LEVEL SCRIPTS -->
-    <!-- jQuery 2.1.3 -->
-    <script src="assets/plugins/jQuery/jQuery-2.1.3.min.js"></script>
-    <!-- Bootstrap 3.3.2 JS -->
-    <script src="assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <!-- Slimscroll -->
-    <script src="assets/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-    <!-- FastClick -->
-    <script src='assets/plugins/fastclick/fastclick.min.js'></script>
-    <!-- iCheck -->
-    <script src="assets/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
-    <!-- Page Script -->
-    <script>
-      $(function () {
-        //Enable iCheck plugin for checkboxes
-        //iCheck for checkbox and radio inputs
-        $('input[type="checkbox"]').iCheck({
-          checkboxClass: 'icheckbox_flat-blue',
-          radioClass: 'iradio_flat-blue'
-        });
-
-        //Enable check and uncheck all functionality
-        $(".checkbox-toggle").click(function () {
-          var clicks = $(this).data('clicks');
-          if (clicks) {
-            //Uncheck all checkboxes
-            $("input[type='checkbox']", ".mailbox-messages").iCheck("uncheck");
-          } else {
-            //Check all checkboxes
-            $("input[type='checkbox']", ".mailbox-messages").iCheck("check");
-          }
-          $(this).data("clicks", !clicks);
-        });
-
-        //Handle starring for glyphicon and font awesome
-        $(".mailbox-star").click(function (e) {
-          e.preventDefault();
-          //detect type
-          var $this = $(this).find("a > i");
-          var glyph = $this.hasClass("glyphicon");
-          var fa = $this.hasClass("fa");          
-
-          //Switch states
-          if (glyph) {
-            $this.toggleClass("glyphicon-star");
-            $this.toggleClass("glyphicon-star-empty");
-          }
-
-          if (fa) {
-            $this.toggleClass("fa-star");
-            $this.toggleClass("fa-star-o");
-          }
-        });
-      });
-    </script>
+  
   </body>
 </html>
